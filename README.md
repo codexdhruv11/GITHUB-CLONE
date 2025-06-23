@@ -1,65 +1,100 @@
-# 🐙 GitHub Clone
+# 🐙 GitHub Clone – MERN Stack Project
 
-A **GitHub UI clone** built using **React**, **Vite**, and **Tailwind CSS**. This project mimics the GitHub interface and uses modern frontend tools and deployment via **GitHub Pages**.
+A full-stack **GitHub UI clone** built using the **MERN stack (MongoDB, Express, React, Node.js)** with **GitHub OAuth login** and a modern frontend styled with **Tailwind CSS**.
 
-![GitHub Pages Deployment](https://img.shields.io/badge/deployed-success-brightgreen)
-
-🌐 **Live Demo:** [codexdhruv11.github.io/GITHUB-CLONE](https://codexdhruv11.github.io/GITHUB-CLONE)
+🌐 **Live Site** (Frontend): [https://codexdhruv11.github.io/GITHUB-CLONE](https://codexdhruv11.github.io/GITHUB-CLONE)
 
 ---
 
 ## 🚀 Features
 
-- 📁 GitHub-like layout and styling
-- 🌙 Dark mode UI with Tailwind
-- ⚛️ React Router for navigation
-- 🧩 Component-based structure
-- ⚡️ Vite for blazing fast build and dev
-- 🛰️ Deployed to GitHub Pages
+- 🧑‍💻 GitHub OAuth Login via Passport.js
+- 🗂️ User profile view & repo exploration (GitHub API)
+- ⚛️ React + Vite frontend with Tailwind styling
+- 🔐 Secure session handling with `express-session`
+- 🌍 Fully deployed frontend using **GitHub Pages**
 
 ---
 
-## 🛠️ Tech Stack
+## 📦 Tech Stack
 
-| Tool         | Description             |
-|--------------|--------------------------|
-| React        | UI Framework             |
-| Vite         | Frontend build tool      |
-| Tailwind CSS | Utility-first styling    |
-| gh-pages     | Deployment tool          |
+**Frontend:**
+- React 18
+- Vite
+- Tailwind CSS
+- React Router DOM
+- React Icons + Hot Toasts
+
+**Backend:**
+- Node.js
+- Express.js
+- MongoDB with Mongoose
+- Passport.js (GitHub strategy)
+- Dotenv, CORS, Session
 
 ---
 
-## 📦 Getting Started (Local Setup)
+## 🛠️ Local Development
+
+### ⚙️ Clone & Install
 
 ```bash
-# Clone the repo
 git clone https://github.com/codexdhruv11/GITHUB-CLONE.git
-cd GITHUB-CLONE/frontend
+cd GITHUB-CLONE
 
-# Install dependencies
+# Install root & frontend dependencies
 npm install
-
-# Run the development server
-npm run dev
+npm install --prefix frontend
 ````
+
+### ▶️ Start the Backend
+
+```bash
+npm run dev
+```
+
+This runs `backend/server.js` using Nodemon.
+
+### 💻 Start the Frontend
+
+In a separate terminal:
+
+```bash
+cd frontend
+npm run dev
+```
 
 ---
 
-## 🌍 Deploying to GitHub Pages
+## 🌐 GitHub OAuth Setup
 
-### One-time setup:
+1. Create an OAuth App at [GitHub Developer Settings](https://github.com/settings/developers)
+2. Use:
 
-1. Add this to `vite.config.js`:
+   * Homepage: `http://localhost:5173`
+   * Callback URL: `http://localhost:5000/api/auth/github/callback`
+3. Add credentials to `.env` in root:
+
+```
+GITHUB_CLIENT_ID=your_id
+GITHUB_CLIENT_SECRET=your_secret
+CLIENT_BASE_URL=http://localhost:5173
+```
+
+---
+
+## 🚀 Deploy Frontend to GitHub Pages
+
+1. In `frontend/vite.config.js`:
 
 ```js
 export default defineConfig({
   base: '/GITHUB-CLONE/',
   plugins: [react()],
-})
+});
 ```
 
-2. Add to `package.json`:
+2. In `frontend/package.json`:
 
 ```json
 "homepage": "https://codexdhruv11.github.io/GITHUB-CLONE",
@@ -69,9 +104,10 @@ export default defineConfig({
 }
 ```
 
-3. Then run:
+3. Deploy:
 
 ```bash
+cd frontend
 npm install gh-pages --save-dev
 npm run deploy
 ```
@@ -82,23 +118,30 @@ npm run deploy
 
 ```
 GITHUB-CLONE/
+├── backend/
+│   └── server.js (OAuth + API)
 ├── frontend/
-│   ├── public/
 │   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   └── App.jsx
+│   ├── index.html
 │   ├── vite.config.js
-│   └── package.json
-└── backend/ (optional or future use)
+│   └── ...
+├── package.json (root – fullstack control)
+├── .env
 ```
 
 ---
 
-## 🙏 Acknowledgements
+## 📄 License
 
-* GitHub's UI/UX for inspiration
-* Tailwind CSS for styling utilities
-* Vite for modern tooling
+This project is licensed under the MIT License.
+Feel free to use or contribute!
 
+---
 
+## 🙌 Acknowledgements
+
+* GitHub UI inspiration
+* Vite + React ecosystem
+* Passport.js for OAuth
+
+````
